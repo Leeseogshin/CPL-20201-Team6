@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    Hello, world!
+    <button id="playButton" onclick="videoPlayPause()">Click me</button>
+    <input name="slider" id="slider" type="range" step="0.01" oninput="updateSlider(this.value) ">
+    <video id="myVideo" oncontextmenu="return false;" width="640" onplay="onPlay()" onpause="onPause()">
+        <source src="./video.mp4" type="video/mp4">
+    </video>
+    <div id="fileInput" ondrop="dropHandler(event);" ondragover="dragOverHandler(event)">
+        <p>파일</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="script.js"></script>
+</body>
+<style>
+    #fileInput {
+        border: 5px solid blue;
+        width: 200px;
+        height: 100px;
+    }
+</style>
+
+</html>
