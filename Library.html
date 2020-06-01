@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--뷰포트를 이용해서 레이아웃의 크기를 웹 페이지 크기에 자동으로 맞춰줍니다.-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--css파일을 링크해줍니다.-->
+    <link rel="stylesheet" href="Library.css">
+</head>
+
+<body>
+    <!--왼쪽 날개 메뉴를 위한 div입니다. 
+        로고 클릭 시 처음 페이지로 이동합니다.
+        보관함 클릭 시 동영상 추가 등의 창으로 이동합니다.-->
+    <div class="sidenav">
+        <a id="logo" href="DefaultLayer.html"><img src="images/logo.png" width="auto" height=30px/></a>
+        <a id="sidebar_selected" href="Library.html">보관함</a>
+        <a href="#Subtitle">자막</a>
+        <a href="#Music">음악</a>
+        <a href="#Filter">필터</a>
+        <a href="#Sticker">스티커</a>
+        <a href="#FaceModulation">얼굴 변경</a>
+        <a href="#VoiceModulation">음성 변조</a>
+        <a href="#Speed">속도</a>
+        <a href="#Mosaic">모자이크</a>
+        <a href="#PIP">PIP</a>
+        <div class="file_input_div">
+            <img src="images/addVideoButton.png" class="file_input_img_btn" width=27.78% height=50px alt="open" />
+            <input class="file_input_hidden" id="newlocalFILE" name="localfile" size="50" maxlength="100000" accept="video/webm,video/mp4" type="file" onchange="loadLocalVID(true)">
+        </div>
+    </div>
+
+    <!--플레이어 창을 나타내는 단락입니다. -->
+    <div class="player" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)" onclick="videoPlayPause()">
+            <video id="myVideo" preload="auto" oncontextmenu="return false;" width="640" onplay="onPlay()" onpause="onPause()">
+                <source id="VID" src="" type="">
+            </video>
+    </div>
+
+    <input name="slider" id="slider" type="range" step="0.001" oninput="updateSlider(this.value)" value="0" >
+
+    <!--재생, 시간, 슬라이더 등이 표시되는 단락입니다.-->
+    <div class="player_tools">
+        <button id="playButton" onclick="videoPlayPause()"><img src="images/playVideoButton.png" width=20px height=20px></button>
+        <span id="current1" >--</span>
+        <span id="current2" style="display: none;">--</span>
+        <span>/</span>
+        <span id="end">--</span>
+    </div>
+
+    <!--편집된 현재 상황이 텍스트로 나타나는 단락입니다.
+        캔버스라고 정의했습니다.-->
+    <div class="canvas" >
+        <div id="canvas"></div>
+    </div>
+
+    <!--블록들을 저장하는 단락입니다.
+        팔레트라고 정의했습니다.-->
+    <div class="pallet" id="pallet">
+    </div>
+
+    <!--편집 기능들을 저장하는 단락입니다.-->
+    <div class="edit_tools">
+        <button id="trashBin" ondrop="dropTrashbin(event)" ondragover="allowDrop(event)"><img src="images/trashBinButton.png" height=40px></button>
+        <button id="save" onclick="urlGenerator()">Export</button>
+        <button id="undo" onclick="undo()"><img src="images/undoButton.png" height=40px></button>
+        <button id="redo" onclick="redo()"><img src="images/redoButton.png" height=40px></button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
